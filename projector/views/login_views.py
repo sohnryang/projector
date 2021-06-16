@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, url_for
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from oauthlib.oauth2 import WebApplicationClient
 from werkzeug.utils import redirect
 from projector import login_manager
@@ -99,6 +99,7 @@ def callback():
 
 
 @bp.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
