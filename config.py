@@ -1,7 +1,7 @@
 import os
-import json
 
 BASE_DIR = os.path.dirname(__file__)
-with open(os.path.join(BASE_DIR, 'secrets.json')) as f:
-    secrets = json.loads(f.read())
-GOOGLE_CLIENT_ID = secrets['google-client-id']
+SQLALCHEMY_DATABASE_URI = f'sqlite:///{os.path.join(BASE_DIR, "projector.db")}'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID', None)
+GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET', None)
