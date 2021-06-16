@@ -22,3 +22,6 @@ class User(UserMixin):
         modeled_user = UserModel(userid=userid, name=name, email=email)
         db.session.add(modeled_user)
         db.session.commit()
+
+    def get_id(self):
+        return str(self.userid)

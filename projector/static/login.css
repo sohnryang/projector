@@ -24,11 +24,3 @@ body {
   font-family: 'Inconsolata', monospace;
   font-size: 3em;
 }
-
-.g-signin2{
-  width: 100%;
-}
-
-.g-signin2 > div{
-  margin: 10px auto;
-}
