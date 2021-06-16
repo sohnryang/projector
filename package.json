@@ -8,11 +8,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "material-components-web": "^11.0.0"
+    "material-components-web": "^11.0.0",
+    "node-sass": "^6.0.0"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
-    "sass": "^1.35.1",
     "typescript": "^4.3.2"
   },
   "scripts": {
