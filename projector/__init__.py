@@ -18,9 +18,10 @@ def create_app():
     login_manager.init_app(app)
     from . import models
 
-    from .views import login_views, main_views
+    from .views import login_views, main_views, dashboard_views
 
     app.register_blueprint(login_views.bp)
     app.register_blueprint(main_views.bp)
+    app.register_blueprint(dashboard_views.bp)
 
     return app

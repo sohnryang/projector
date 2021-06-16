@@ -40,12 +40,7 @@ bp.record(set_client)
 @bp.route("/")
 def login():
     if current_user.is_authenticated:
-        return (
-            f"<pre>id: {current_user.userid}\n"
-            f"name: {current_user.name}\n"
-            f"email: {current_user.email}</pre><br />\n"
-            "<a href='/login/logout'>Log out</a>"
-        )
+        return redirect(url_for("dashboard.index"))
     else:
         return render_template("login.html")
 
