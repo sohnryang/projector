@@ -1,0 +1,21 @@
+{
+  "name": "projector",
+  "version": "0.0.0",
+  "description": "A website for HAS projects",
+  "main": "index.js",
+  "repository": "git@github.com:sohnryang/projector.git",
+  "author": "Ryang Sohn <loop.infinitely@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "material-components-web": "^11.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.3.1",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "start": "yarn run build && ./runserver.sh",
+    "build": "./node_modules/.bin/parcel build projector/static/src/login.ts projector/static/src/dashboard.ts -d projector/static/dist"
+  }
+}
