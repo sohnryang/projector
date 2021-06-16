@@ -8,10 +8,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}" />
-    <meta
-      name="google-signin-client_id"
-      content="{{ client_id }}"
-    />
     <meta charset="UTF-8" />
   </head>
 
@@ -20,25 +16,9 @@
       <section class="header">
         <h1 class="title-text">Projector @ Hana</h1>
         <span>하나고등학교 프로젝트 사이트</span>
-        <script>
-          function renderButton() {
-            gapi.signin2.render("g-signin2", {
-              scope: "profile email",
-            });
-          }
-
-          function onSignin(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log(profile);
-          }
-        </script>
-        <div class="g-signin2" data-onsuccess="onSignin"></div>
+        <br>
+        <a href="/googlelogin">하나고등학교 G Suite 계정으로 로그인</a>
       </section>
     </div>
-    <script
-      src="https://apis.google.com/js/platform.js?onload=renderButton"
-      async
-      defer
-    ></script>
   </body>
 </html>
