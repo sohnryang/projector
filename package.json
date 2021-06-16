@@ -11,13 +11,12 @@
     "material-components-web": "^11.0.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "2.0.0-beta.3.1",
-    "parcel": "^2.0.0-beta.3.1",
+    "parcel-bundler": "^1.12.5",
     "sass": "^1.35.1",
     "typescript": "^4.3.2"
   },
   "scripts": {
     "start": "yarn run build && ./runserver.sh",
-    "build": "./node_modules/.bin/parcel build projector/static/src/login.ts projector/static/src/dashboard.ts --dist-dir projector/static/dist"
+    "build": "./node_modules/.bin/parcel build projector/static/src/login.ts projector/static/src/dashboard.ts -d projector/static/dist"
   }
 }
