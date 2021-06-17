@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from flask_login import login_required
 from projector.models import Post
 
-bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
+bp = Blueprint("list", __name__, url_prefix="/list")
 
 
 @bp.route("/")

@@ -40,7 +40,7 @@ bp.record(set_client)
 @bp.route("/")
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("dashboard.index"))
+        return redirect(url_for("list.index"))
     else:
         return render_template("login.html")
 

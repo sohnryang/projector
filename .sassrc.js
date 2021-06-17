@@ -6,5 +6,6 @@ module.exports = {
   "includePaths": [
     path.resolve(CWD, 'node_modules'),
     path.resolve(CWD, 'projector/static/src')
-  ]
+  ],
+  outputStyle: "nested"
 };

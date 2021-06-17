@@ -1,142 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Projector</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='dist/dashboard.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8" />
-  </head>
-
-  <body>
-    <div id="app"></div>
-    <header class="mdc-top-app-bar app-bar" id="app-bar">
-      <div class="mdc-top-app-bar__row">
-        <section
-          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start"
-        >
-          <button
-            class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
-            aria-label="Open navigation menu"
-          >
-            menu
-          </button>
-          <span class="mdc-top-app-bar__title">Projector @ Hana</span>
-        </section>
-        <section
-          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
-          role="toolbar"
-        >
-          <button
-            class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="Favorite"
-          >
-            favorite
-          </button>
-          <button
-            class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-            aria-label="Search"
-          >
-            search
-          </button>
-        </section>
-      </div>
-    </header>
-    <aside class="mdc-drawer mdc-drawer--modal">
-      <div class="mdc-drawer__content">
-        <nav class="mdc-list">
-          <a
-            class="mdc-list-item mdc-list-item--activated"
-            href="#"
-            aria-current="page"
-            tabindex="0"
-          >
-            <span class="mdc-list-item__ripple"></span>
-            <i class="material-icons mdc-list-item__graphic" aria-hidden="true"
-              >inbox</i
-            >
-            <span class="mdc-list-item__text">Inbox</span>
+{% extends 'base.html' %}
+{% block content %}
+<div class="mdc-data-table__table-container">
+  <table class="mdc-data-table__table" aria-label="Posts">
+    <thead>
+      <tr class="mdc-data-table__header-row">
+        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+          제목
+        </th>
+        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+          프로젝트
+        </th>
+        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+          작성자
+        </th>
+        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">
+          작성일
+        </th>
+      </tr>
+    </thead>
+    <tbody class="mdc-data-table__content">
+      {% if post_list %} {% for post in post_list %}
+      <tr class="mdc-data-table__row">
+        <th class="mdc-data-table__cell" scope="row">
+          <a href="{{ url_for('post.post_detail', postid=post.postid) }}">
+            {{ post.title }}
           </a>
-          <a class="mdc-list-item" href="#">
-            <span class="mdc-list-item__ripple"></span>
-            <i class="material-icons mdc-list-item__graphic" aria-hidden="true"
-              >send</i
-            >
-            <span class="mdc-list-item__text">Outgoing</span>
-          </a>
-          <a class="mdc-list-item" href="#">
-            <span class="mdc-list-item__ripple"></span>
-            <i class="material-icons mdc-list-item__graphic" aria-hidden="true"
-              >drafts</i
-            >
-            <span class="mdc-list-item__text">Drafts</span>
-          </a>
-        </nav>
-      </div>
-    </aside>
-    <div class="mdc-drawer-scrim"></div>
-    <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust">
-      <main class="main-content" id="main-content">
-        <div class="mdc-data-table__table-container">
-          <table class="mdc-data-table__table" aria-label="Posts">
-            <thead>
-              <tr class="mdc-data-table__header-row">
-                <th
-                  class="mdc-data-table__header-cell"
-                  role="columnheader"
-                  scope="col"
-                >
-                  제목
-                </th>
-                <th
-                  class="mdc-data-table__header-cell"
-                  role="columnheader"
-                  scope="col"
-                >
-                  프로젝트
-                </th>
-                <th
-                  class="mdc-data-table__header-cell"
-                  role="columnheader"
-                  scope="col"
-                >
-                  작성자
-                </th>
-                <th
-                  class="mdc-data-table__header-cell"
-                  role="columnheader"
-                  scope="col"
-                >
-                  작성일
-                </th>
-              </tr>
-            </thead>
-            <tbody class="mdc-data-table__content">
-              {% if post_list %} {% for post in post_list %}
-              <tr class="mdc-data-table__row">
-                <th class="mdc-data-table__cell" scope="row">
-                  {{ post.title }}
-                </th>
-                <td class="mdc-data-table__cell">{{ post.project.name }}</td>
-                <td class="mdc-data-table__cell">{{ post.author }}</td>
-                <td class="mdc-data-table__cell">{{ post.creation_date }}</td>
-              </tr>
-              {% endfor %} {% endif %}
-            </tbody>
-          </table>
-        </div>
-      </main>
-    </div>
-    <script src="{{ url_for('static', filename='dist/dashboard.js') }}"></script>
-  </body>
-</html>
+        </th>
+        <td class="mdc-data-table__cell">{{ post.project.name }}</td>
+        <td class="mdc-data-table__cell">{{ post.author }}</td>
+        <td class="mdc-data-table__cell">{{ post.creation_date }}</td>
+      </tr>
+      {% endfor %} {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
