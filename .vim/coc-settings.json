@@ -1,5 +1,5 @@
 {
   "python.pythonPath": "/home/curling_grad/Documents/projector/venv/bin/python",
   "python.formatting.provider": "black",
-  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript"]
+  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript"]
 }
