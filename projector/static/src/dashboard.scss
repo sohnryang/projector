@@ -3,7 +3,7 @@
 @use "@material/drawer";
 @use "@material/list";
 
-@import "material-components-web/material-components-web";
+@include icon-button.core-styles;
 
 body {
   display: flex;

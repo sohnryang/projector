@@ -12,33 +12,34 @@
       <span class="mdc-top-app-bar__title">Projector @ Hana</span>
     </section>
     <section
-      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+      class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-menu-surface--anchor"
       role="toolbar"
     >
       <button
         class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
         aria-label="My account"
+        id="account_button"
       >
-        <div class="mdc-menu mdc-menu-surface">
-          <ul
-            class="mdc-list"
-            role="menu"
-            aria-hidden="true"
-            aria-orientation="vertical"
-            tabindex="-1"
-          >
-            <li class="mdc-list-item" role="menuitem">
-              <span class="mdc-list-item__ripple"></span>
-              <span class="mdc-list-item__text">A Menu Item</span>
-            </li>
-            <li class="mdc-list-item" role="menuitem">
-              <span class="mdc-list-item__ripple"></span>
-              <span class="mdc-list-item__text">Another Menu Item</span>
-            </li>
-          </ul>
-        </div>
         account_circle
       </button>
+      <div class="mdc-menu mdc-menu-surface">
+        <ul
+          class="mdc-list"
+          role="menu"
+          aria-hidden="true"
+          aria-orientation="vertical"
+          tabindex="-1"
+        >
+          <li class="mdc-list-item" role="menuitem">
+            <span class="mdc-list-item__ripple"></span>
+            <span class="mdc-list-item__text">A Menu Item</span>
+          </li>
+          <li class="mdc-list-item" role="menuitem">
+            <span class="mdc-list-item__ripple"></span>
+            <span class="mdc-list-item__text">Another Menu Item</span>
+          </li>
+        </ul>
+      </div>
     </section>
   </div>
 </header>

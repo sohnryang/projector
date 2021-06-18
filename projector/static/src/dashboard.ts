@@ -11,13 +11,14 @@ const dataTable = new MDCDataTable(document.querySelector(".mdc-data-table")!);
 
 const listEl = document.querySelector(".mdc-drawer .mdc-list")!;
 const mainContentEl = document.querySelector(".main-content")!;
-const menu = new MDCMenu(document.querySelector(".mdc-menu"));
+const menu = new MDCMenu(document.querySelector(".mdc-menu")!);
 menu.open = true;
-
-listEl.addEventListener("click", (event) => {
-  mainContentEl.querySelector("input, button")!.focus();
-});
 
 topAppBar.listen("MDCTopAppBar:nav", () => {
   drawer.open = !drawer.open;
+});
+
+const accountButtonElem = document.querySelector("#account-button")!;
+accountButtonElem.addEventListener("click", () => {
+  menu.open = !menu.open;
 });

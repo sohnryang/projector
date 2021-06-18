@@ -1,29 +1,33 @@
 module.exports = [
   {
-    entry: "./projector/static/src/dashboard.scss",
+    entry: {
+      dashboard: "./projector/static/src/dashboard.ts",
+    },
     output: {
-      filename: "style-bundle.js",
+      filename: "[name].js",
     },
     module: {
       rules: [
         {
           test: /\.scss$/,
+          exclude: /node_modules/,
           use: [
-            {
-              loader: "file-loader",
-              options: { name: "dashboard.css" },
-            },
+            { loader: "file-loader", options: { name: "dashboard.css" } },
             { loader: "extract-loader" },
             { loader: "css-loader" },
             {
               loader: "sass-loader",
               options: {
-                implementation: require("node-sass"),
+                implementation: require("sass"),
                 webpackImporter: false,
+                sassOptions: {
+                  includePaths: ["./node_modules"],
+                },
               },
             },
           ],
         },
+        { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ },
       ],
     },
   },
