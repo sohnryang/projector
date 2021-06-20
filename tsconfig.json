@@ -7,8 +7,7 @@
     "strict": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "outDir": "./projector/static/dist/",
-    "sourceMap": true
+    "outDir": "./projector/static/dist/"
   },
   "include": ["./projector/static/src/**/*"]
 }
