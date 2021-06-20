@@ -85,7 +85,7 @@ def callback():
     else:
         return "User email not available", 400
     if not re.fullmatch(email_pattern, user_email):
-        return "Must be HAS Account. <a href='/login'>Go back</a>", 403
+        return "하나고등학교 계정만 가능합니다. <a href='/login'>돌아가기</a>", 403
     user = User(userid=unique_id, name=user_name, email=user_email)
     if not User.get(unique_id):
         User.create(unique_id, user_name, user_email)
