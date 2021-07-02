@@ -20,8 +20,8 @@ class User(UserMixin):
     @staticmethod
     def create(userid, name, email):
         modeled_user = UserModel(userid=userid, name=name, email=email)
-        db.session.add(modeled_user)
-        db.session.commit()
+        db.session.add(modeled_user)  # type: ignore
+        db.session.commit()  # type: ignore
 
     def get_id(self):
         return str(self.userid)
