@@ -1,7 +1,7 @@
 module.exports = [
   {
     entry: {
-      dashboard: "./projector/static/src/dashboard.ts",
+      base: "./projector/static/src/base.ts",
     },
     output: {
       filename: "[name].js",
@@ -12,7 +12,7 @@ module.exports = [
           test: /\.scss$/,
           exclude: /node_modules/,
           use: [
-            { loader: "file-loader", options: { name: "dashboard.css" } },
+            { loader: "file-loader", options: { name: "base.css" } },
             { loader: "extract-loader" },
             { loader: "css-loader" },
             {
