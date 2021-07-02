@@ -54,7 +54,8 @@ def create():
         creation_date=datetime.now(),
         projectid=projectid,
         project=Project.query.get(projectid),
-        author=g.user.name,
+        autherid=g.user.userid,
+        author=g.user,
     )
     db.session.add(post)  # type: ignore
     db.session.commit()  # type: ignore
