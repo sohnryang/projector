@@ -1,7 +1,8 @@
-from flask import Blueprint, url_for
-from werkzeug.utils import redirect
+from flask import Blueprint, url_for, redirect
 
-bp = Blueprint('main', __name__, url_prefix='/')
-@bp.route('/')
+bp = Blueprint("main", __name__, url_prefix="/")
+
+
+@bp.route("/")
 def index():
-    return redirect(url_for('login.login'))
+    return redirect(url_for("login.login"))
