@@ -10,19 +10,18 @@ chardet==4.0.0
 click==7.1.2
 cryptography==3.4.7
 decorator==5.0.9
-Flask==1.1.4
+Flask==2.0.1
 Flask-Login==0.5.0
 Flask-Migrate==3.0.1
-flask-restx==0.4.0
 flask-shell-ipython==0.4.1
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.0
 idna==2.10
 ipython==7.24.1
 ipython-genutils==0.2.0
-itsdangerous==1.1.0
+itsdangerous==2.0.1
 jedi==0.18.0
-Jinja2==2.11.3
+Jinja2==3.0.1
 jsonschema==3.2.0
 Mako==1.1.4
 MarkupSafe==2.0.1
@@ -37,6 +36,7 @@ prompt-toolkit==3.0.18
 ptyprocess==0.7.0
 pycparser==2.20
 Pygments==2.9.0
+PyJWT==2.1.0
 pyOpenSSL==20.0.1
 pyrsistent==0.18.0
 python-dateutil==2.8.1
@@ -50,4 +50,4 @@ toml==0.10.2
 traitlets==5.0.5
 urllib3==1.26.5
 wcwidth==0.2.5
-Werkzeug==1.0.1
+Werkzeug==2.0.1
