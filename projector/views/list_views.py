@@ -9,4 +9,4 @@ bp = Blueprint("list", __name__, url_prefix="/list")
 @login_required
 def index():
     post_list = Post.query.order_by(Post.creation_date.desc())
-    return render_template("dashboard.html", post_list=post_list)
+    return render_template("post_list.html", post_list=post_list)
