@@ -25,6 +25,23 @@ def create():
     return Response(status=200)
 
 
+@bp.route("/edit/<int:projectid>", methods=["PUT"])
+@login_required
+def edit(projectid: int):
+    project = Project.query.get(projectid)
+    if project.adminid != g.userid:
+        return Response(status=403)
+    json_data = request.get_json()
+    name = json_data["name"]
+    description = json_data["description"]
+    members = json_data["members"]
+    project.name = name
+    project.description = description
+    project.members = members
+    db.session.commit()  # type: ignore
+    return Response(status=200)
+
+
 @bp.route("/get/<int:projectid>")
 @login_required
 def get(projectid: int):
