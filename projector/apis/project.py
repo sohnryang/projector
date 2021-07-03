@@ -42,6 +42,13 @@ def edit(projectid: int):
     return Response(status=200)
 
 
+@bp.route("/search/<keyword>", methods=["POST"])
+@login_required
+def search(keyword: str):
+    queried_projects = Project.query.filter(Project.name.ilike(f"%{keyword}%"))
+    return jsonify([project.serialize() for project in queried_projects])
+
+
 @bp.route("/get/<int:projectid>")
 @login_required
 def get(projectid: int):
