@@ -45,3 +45,18 @@ class Post(db.Model):
     authorid = db.Column(
         db.Text(), db.ForeignKey("user_model.userid", ondelete="CASCADE")
     )
+
+    def serialize(self, fetch_content=False):
+        author_name = UserModel.query.get(self.authorid).name
+        project_name = Project.query.get(self.projectid).name
+        serialized = {
+            "post_id": self.postid,
+            "title": self.title,
+            "creation_date": self.creation_date.strftime("%Y-%m-%d"),
+            "project_id": self.projectid,
+            "project_name": project_name,
+            "author_name": author_name,
+        }
+        if fetch_content:
+            serialized["content"] = self.content
+        return serialized
