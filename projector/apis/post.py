@@ -10,15 +10,7 @@ bp = Blueprint("post", __name__, url_prefix="/post")
 @bp.route("/list")
 @login_required
 def post_list():
-    json_data = request.get_json()
-    page = 1
-    per_page = 10
-    if json_data:
-        page = json_data.get("page", 1)
-        per_page = json_data.get("perpage", 10)
-    queried_posts = (
-        Post.query.order_by(Post.creation_date.desc()).paginate(page, per_page).items
-    )
+    queried_posts = Post.query.order_by(Post.creation_date.desc())
     response = [post.serialize() for post in queried_posts]
     return jsonify(response)
 
