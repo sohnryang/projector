@@ -14,9 +14,10 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .apis import auth, post
+    from .apis import auth, post, project
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(post.bp)
+    app.register_blueprint(project.bp)
 
     return app
