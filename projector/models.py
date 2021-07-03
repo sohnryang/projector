@@ -13,9 +13,8 @@ class Project(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text(), nullable=True)
     adminid = db.Column(
-        db.Integer, db.ForeignKey("user_model.userid", ondelete="CASCADE")
+        db.Text(), db.ForeignKey("user_model.userid", ondelete="CASCADE")
     )
-    admin = db.relationship("UserModel", backref=db.backref("user_model_set"))
     members = db.Column(db.Text(), nullable=False)
 
 
@@ -27,8 +26,6 @@ class Post(db.Model):
     projectid = db.Column(
         db.Integer, db.ForeignKey("project.projectid", ondelete="CASCADE")
     )
-    project = db.relationship("Project", backref=db.backref("post_set"))
     authorid = db.Column(
-        db.Integer, db.ForeignKey("user_model.userid", ondelete="CASCADE")
+        db.Text(), db.ForeignKey("user_model.userid", ondelete="CASCADE")
     )
-    author = db.relationship("UserModel", backref=db.backref("user_model_set"))
