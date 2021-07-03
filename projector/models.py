@@ -17,6 +17,22 @@ class Project(db.Model):
     )
     members = db.Column(db.Text(), nullable=False)
 
+    def serialize(self):
+        member_emails = self.members.split(",")
+        members = []
+        for email in member_emails:
+            queried_user = UserModel.query.filter(UserModel.email == email).first()
+            if not queried_user:
+                continue
+            members.append(queried_user.name)
+        return {
+            "project_id": self.projectid,
+            "name": self.name,
+            "admin_name": UserModel.query.get(self.adminid).name,
+            "member_names": members,
+            "description": self.description,
+        }
+
 
 class Post(db.Model):
     postid = db.Column(db.Integer, primary_key=True)
