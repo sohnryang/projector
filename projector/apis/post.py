@@ -41,7 +41,7 @@ def create():
     )
     db.session.add(post)  # type: ignore
     db.session.commit()  # type: ignore
-    return ""
+    return Response(status=200)
 
 
 @bp.route("/edit/<int:postid>", methods=["PUT"])
