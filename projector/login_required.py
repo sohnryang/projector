@@ -21,6 +21,8 @@ def login_required(f):
             userid = payload["userid"]
             g.userid = userid
             g.user = UserModel.query.get(str(userid))
+            if not g.user:
+                return Response(status=401)
         else:
             return Response(status=401)
         return f(*args, **kwargs)
