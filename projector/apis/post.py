@@ -1,8 +1,8 @@
 from datetime import datetime
-from flask import Blueprint, g, jsonify, request
+from flask import Blueprint, g, jsonify, request, Response
 from projector import db
 from projector.login_required import login_required
-from projector.models import Post, Project
+from projector.models import Post
 
 bp = Blueprint("post", __name__, url_prefix="/post")
 
@@ -15,31 +15,15 @@ def post_list():
     queried_posts = (
         Post.query.order_by(Post.creation_date.desc()).paginate(page, per_page).items
     )
-    response = []
-    for queried_post in queried_posts:
-        post = {
-            "postid": queried_post.postid,
-            "title": queried_post.title,
-            "author": queried_post.author,
-            "project_name": queried_post.project.name,
-            "creation_date": queried_post.creation_date.strftime("%y-%m-%d"),
-        }
-        response.append(post)
+    response = [post.serialize() for post in queried_posts]
     return jsonify(response)
 
 
-@bp.route("/content/<int:postid>")
+@bp.route("/get/<int:postid>")
 @login_required
-def post_content(postid: int):
+def get(postid: int):
     post = Post.query.get(postid)
-    response = {
-        "title": post.title,
-        "author": post.author,
-        "project_name": post.project.name,
-        "creation_date": post.creation_date.strftime("%y-%m-%d"),
-        "content": post.content,
-    }
-    return jsonify(response)
+    return jsonify(post.serialize(fetch_content=True))
 
 
 @bp.route("/create", methods=["POST"])
@@ -53,9 +37,7 @@ def create():
         content=content,
         creation_date=datetime.now(),
         projectid=projectid,
-        project=Project.query.get(projectid),
-        autherid=g.user.userid,
-        author=g.user,
+        authorid=g.user.userid,
     )
     db.session.add(post)  # type: ignore
     db.session.commit()  # type: ignore
