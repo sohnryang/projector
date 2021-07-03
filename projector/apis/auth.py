@@ -72,7 +72,7 @@ def callback():
         return "User email not available", 400
     if not re.fullmatch(email_pattern, user_email):
         return "하나고등학교 계정만 가능합니다. <a href='/auth/signin'>돌아가기</a>", 403
-    user = UserModel(userid=unique_id, name=user_name, email=user_email)
+    user = UserModel(userid=str(unique_id), name=user_name, email=user_email)
     if not UserModel.query.get(str(unique_id)):
         db.session.add(user)  # type: ignore
         db.session.commit()  # type: ignore
