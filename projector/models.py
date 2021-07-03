@@ -19,12 +19,10 @@ class Project(db.Model):
     members = db.Column(db.Text(), nullable=False)
 
     def serialize(self):
-        member_emails = self.members.split(",")
+        member_ids = self.members.split(",")
         members = []
-        for email in member_emails:
-            queried_user = UserModel.query.filter(UserModel.email == email).first()
-            if not queried_user:
-                continue
+        for member_id in member_ids:
+            queried_user = UserModel.query.get(member_id)
             members.append(queried_user.name)
         return {
             "project_id": self.projectid,
