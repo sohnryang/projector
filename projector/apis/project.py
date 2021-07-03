@@ -9,10 +9,11 @@ bp = Blueprint("project", __name__, url_prefix="/project")
 @bp.route("/create", methods=["POST"])
 @login_required
 def create():
-    name = request.form["name"]
-    description = request.form["description"]
+    json_data = request.get_json()
+    name = json_data["name"]
+    description = json_data["description"]
     adminid = g.user.userid
-    members = request.form["members"]
+    members = json_data["members"]
     project = Project(
         name=name,
         description=description,

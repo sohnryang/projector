@@ -10,8 +10,12 @@ bp = Blueprint("post", __name__, url_prefix="/post")
 @bp.route("/list")
 @login_required
 def post_list():
-    page = request.args.get("page", 1)
-    per_page = request.args.get("perpage", 10)
+    json_data = request.get_json()
+    page = 1
+    per_page = 10
+    if json_data:
+        page = json_data.get("page", 1)
+        per_page = json_data.get("perpage", 10)
     queried_posts = (
         Post.query.order_by(Post.creation_date.desc()).paginate(page, per_page).items
     )
@@ -29,9 +33,10 @@ def get(postid: int):
 @bp.route("/create", methods=["POST"])
 @login_required
 def create():
-    title = request.form["title"]
-    content = request.form["content"]
-    projectid = request.form["projectid"]
+    json_data = request.get_json()
+    title = json_data["title"]
+    content = json_data["content"]
+    projectid = int(json_data["projectid"])
     post = Post(
         title=title,
         content=content,
