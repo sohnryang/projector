@@ -42,3 +42,18 @@ def create():
     db.session.add(post)  # type: ignore
     db.session.commit()  # type: ignore
     return ""
+
+
+@bp.route("/edit/<int:postid>", methods=["PUT"])
+@login_required
+def edit(postid: int):
+    post = Post.query.get(postid)
+    if post.authorid != g.userid:
+        return Response(status=403)
+    json_data = request.get_json()
+    title = json_data["title"]
+    content = json_data["content"]
+    post.title = title
+    post.content = content
+    db.session.commit()  # type: ignore
+    return Response(status=200)
