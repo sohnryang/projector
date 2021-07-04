@@ -54,3 +54,10 @@ def edit(postid: int):
     post.content = content
     db.session.commit()  # type: ignore
     return Response(status=200)
+
+
+@bp.route("/filter-by-project/<int:projectid>", methods=["POST"])
+@login_required
+def search(projectid: int):
+    queried_posts = Post.query.filter_by(projectid=projectid)
+    return jsonify([post.serialize() for post in queried_posts])
