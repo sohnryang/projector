@@ -54,6 +54,7 @@ class Post(db.Model):
             "creation_date": self.creation_date.strftime("%Y-%m-%d"),
             "project_id": self.projectid,
             "project_name": project_name,
+            "author_id": self.authorid,
             "author_name": author_name,
         }
         if fetch_content:
