@@ -31,7 +31,7 @@ bp.record(set_client)
 @bp.route("/signin", methods=["POST"])
 def signin():
     json_data = request.get_json()
-    token = json_data["credential"]
+    token = json_data["tokenId"]
     idinfo = id_token.verify_oauth2_token(token, requests.Request(), GOOGLE_CLIENT_ID)
     name = idinfo["name"]
     email = idinfo["email"]
