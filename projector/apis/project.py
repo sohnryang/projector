@@ -49,6 +49,18 @@ def search(keyword: str):
     return jsonify([project.serialize() for project in queried_projects])
 
 
+@bp.route("/filter-by-user/<int:userid>", methods=["POST"])
+@login_required
+def filter_by_user(userid: int):
+    queried_projects = Project.query.filter(
+        Project.members.startswith(f"{userid},")
+        | Project.members.endswith(f",{userid}")
+        | Project.members.like(f"%,{userid},%")
+        | (Project.members == str(userid))
+    )
+    return jsonify([project.serialize() for project in queried_projects])
+
+
 @bp.route("/get/<int:projectid>")
 @login_required
 def get(projectid: int):
