@@ -61,3 +61,12 @@ def edit(postid: int):
 def search(projectid: int):
     queried_posts = Post.query.filter_by(projectid=projectid)
     return jsonify([post.serialize() for post in queried_posts])
+
+
+@bp.route("/filter-by-projects", methods=["POST"])
+@login_required
+def search_multiple():
+    json_data = request.get_json()
+    projects = json_data["projects"]
+    queried_posts = Post.query.filter(Post.projectid.in_(projects))
+    return jsonify([post.serialize() for post in queried_posts])
