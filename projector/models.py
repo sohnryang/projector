@@ -14,7 +14,7 @@ class Project(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text(), nullable=True)
     adminid = db.Column(
-        db.Text(), db.ForeignKey("user_model.userid", ondelete="CASCADE")
+        db.Integer, db.ForeignKey("user_model.userid", ondelete="CASCADE")
     )
     members = db.Column(db.Text(), nullable=False)
 
@@ -42,7 +42,7 @@ class Post(db.Model):
         db.Integer, db.ForeignKey("project.projectid", ondelete="CASCADE")
     )
     authorid = db.Column(
-        db.Text(), db.ForeignKey("user_model.userid", ondelete="CASCADE")
+        db.Integer, db.ForeignKey("user_model.userid", ondelete="CASCADE")
     )
 
     def serialize(self, fetch_content=False):
