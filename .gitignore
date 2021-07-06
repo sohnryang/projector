@@ -280,5 +280,4 @@ temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,node
 runserver.sh
-migrations/
 projector.db
