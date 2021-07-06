@@ -17,10 +17,11 @@ def create_app():
     migrate.init_app(app, db)
     cors.init_app(app, resources={r"/*": {"origins": "*"}})
 
-    from .apis import auth, post, project
+    from .apis import auth, post, project, user
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(post.bp)
     app.register_blueprint(project.bp)
+    app.register_blueprint(user.bp)
 
     return app

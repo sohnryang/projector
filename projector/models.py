@@ -8,6 +8,9 @@ class UserModel(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
 
+    def serialize(self):
+        return {"user_id": self.userid, "name": self.name, "email": self.email}
+
 
 class Project(db.Model):
     projectid = db.Column(db.Integer, primary_key=True)
