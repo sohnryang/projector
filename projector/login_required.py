@@ -20,8 +20,8 @@ def login_required(f):
                 return Response(status=401)
             userid = payload["userid"]
             g.userid = userid
-            g.user = UserModel.query.get(str(userid))
-            if not g.user:
+            g.user = UserModel.query.get(userid)
+            if g.user is None:
                 return Response(status=401)
         else:
             return Response(status=401)
