@@ -1,3 +1,1 @@
-export FLASK_APP=projector
-export FLASK_ENV=production
-flask db upgrade
+python -c 'from projector import db;db.create_all()'
