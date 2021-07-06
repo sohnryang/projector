@@ -17,7 +17,7 @@ def login_required(f):
                     algorithms="HS256",
                 )
             except jwt.InvalidTokenError:
-                payload = None
+                return Response(status=401)
             userid = payload["userid"]
             g.userid = userid
             g.user = UserModel.query.get(str(userid))
