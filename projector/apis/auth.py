@@ -48,4 +48,6 @@ def signin():
         "exp": datetime.utcnow() + timedelta(seconds=TOKEN_EXP_TIME),
     }
     token = jwt.encode(payload, JWT_SECRET_KEY, "HS256")
-    return jsonify({"access_token": token, "user_id": user.userid})
+    response = user.serialize()
+    response["access_token"] = token
+    return jsonify(response)
