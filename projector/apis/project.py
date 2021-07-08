@@ -18,7 +18,7 @@ def create():
         name=name,
         description=description,
         adminid=adminid,
-        members=members,
+        members=",".join(members),
     )
     db.session.add(project)  # type: ignore
     db.session.commit()  # type: ignore
