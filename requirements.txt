@@ -2,6 +2,7 @@ alembic==1.6.5
 appdirs==1.4.4
 attrs==21.2.0
 backcall==0.2.0
+beautifulsoup4==4.9.3
 black==21.6b0
 cachetools==4.2.2
 certifi==2021.5.30
@@ -60,6 +61,7 @@ regex==2021.4.4
 requests==2.25.1
 rsa==4.7.2
 six==1.16.0
+soupsieve==2.2.1
 SQLAlchemy==1.4.18
 toml==0.10.2
 traitlets==5.0.5
